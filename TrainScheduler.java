@@ -40,6 +40,7 @@ class Schedule{
     PriorityQueue<Platfrom> pq = new PriorityQueue<>(2,(a,b)-> Math.toIntExact(a.timeToEmpty - b.timeToEmpty));
     void scheduleTrain(Integer trainId, Long arrival, Long depart)
     {
+        //2 is platfrom side, edit while construcing object.
         if(pq.size()<2) {
             if (!pq.isEmpty() && arrival >= pq.peek().timeToEmpty) {
                 int platformId = pq.peek().platformId;
