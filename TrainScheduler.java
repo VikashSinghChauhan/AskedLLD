@@ -42,6 +42,7 @@ class Schedule{
     {
         //2 is platfrom side, edit while construcing object.
         if(pq.size()<2) {
+            //some trains are standing at platfrom, to compare with.
             if (!pq.isEmpty() && arrival >= pq.peek().timeToEmpty) {
                 int platformId = pq.peek().platformId;
                 pq.poll();
@@ -49,6 +50,7 @@ class Schedule{
                 platformSchedule.get(pq.size()+1).add(new Platfrom(pq.size(), arrival, depart, trainId));
                 System.out.println(trainId + "has been assigned platform number " + platformId + " untill " + depart);
             }
+            // no trains at any platform, just insert
             else
             {
                 pq.add(new Platfrom(pq.size()+1,arrival, depart, trainId));
