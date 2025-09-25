@@ -10,6 +10,9 @@ we are given a time at which trains is arriving and duration for which it will h
 2. how waiting will be handled, if all platform already has train scheduled on it, how we will schedule next train.
 3. if platfrom number is provided with time mentioned, get the train scheduled on that platform.
 
+https://leetcode.com/problems/meeting-rooms-iii/description/
+use chat gpt for more clear entites like train, platform etc. 
+
  */
 
 
