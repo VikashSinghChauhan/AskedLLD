@@ -1,5 +1,7 @@
 package com.example.SpringTest.tictactoe;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -9,6 +11,7 @@ public class Game {
     Player winner;
     GameStatus gameStatus;
     List<Move> moveList;
+    List<Player> observerList = new ArrayList<>();
 
     public Game(Player player1, Player player2) {
         this.board = new Board(3);
@@ -16,6 +19,7 @@ public class Game {
         this.player2 = player2;
         this.gameStatus = GameStatus.IN_PROGRESS;
         this.moveList = List.of(new VerticalMove(), new HorizontalMove(), new DiagonalMove());
+        observerList.addAll(Arrays.asList(player1, player2));
     }
 
     public void makeMove(Player player, int row, int col)
@@ -23,9 +27,16 @@ public class Game {
         if(gameStatus==GameStatus.IN_PROGRESS)
         {
             board.placeSymbol(row, col, player);
-            if(checkWinner(row,col,moveList, player))
+            if(board.checkWinner(row,col,moveList, player))
             {
+                Player winnerPlayer;
                 gameStatus = player.getSymbol().equals('O')?GameStatus.WINNER_O:GameStatus.WINNER_X;
+                winnerPlayer = (gameStatus == GameStatus.WINNER_O)?player1:player2;
+
+                for(Player plyr : observerList)
+                {
+                    plyr.notifyPlayer(winnerPlayer);
+                }
             }
             else if(board.checkDraw())
             {
@@ -34,25 +45,5 @@ public class Game {
         }
     }
 
-    public boolean checkWinner(int row, int col, List<Move> moves, Player player)
-    {
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-            {
-                System.out.print(board.board[i][j].getSymbol());
-            }
-            System.out.println("");
-        }
-        for(Move move : moves)
-        {
-            if(move.move(row, col, player, board))
-            {
-                System.out.println("Player won" + player.getSymbol());
-                return true;
-            }
-        }
-        return false;
 
-    }
 }

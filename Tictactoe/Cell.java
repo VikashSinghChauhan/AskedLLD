@@ -14,4 +14,7 @@ public class Cell {
     public Symbol getSymbol() {
         return symbol;
     }
+
+
+
 }

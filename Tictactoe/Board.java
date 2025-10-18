@@ -43,4 +43,26 @@ public class Board {
         return size*size == movesCount;
     }
 
+    public boolean checkWinner(int row, int col, List<Move> moves, Player player)
+    {
+//        for(int i=0;i<3;i++)
+//        {
+//            for(int j=0;j<3;j++)
+//            {
+//                System.out.print(board[i][j].getSymbol());
+//            }
+//            System.out.println("");
+//        }
+        for(Move move : moves)
+        {
+            if(move.move(row, col, player, this))
+            {
+                System.out.println("Player won" + player.getSymbol());
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 }

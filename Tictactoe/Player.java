@@ -16,4 +16,8 @@ public class Player {
     public Symbol getSymbol() {
         return symbol;
     }
+
+    public void notifyPlayer(Player winnerPlayer ){
+        System.out.println("Player won :: " + winnerPlayer.getName());
+    }
 }
