@@ -16,3 +16,7 @@ public class TicTacToeGame {
 
     }
 }
+
+
+//https://www.youtube.com/watch?v=gktZsX9Z8Kw 
+//watch this video first, sol based on this.
